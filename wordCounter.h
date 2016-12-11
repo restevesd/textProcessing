@@ -4,8 +4,6 @@
 unsigned int hashString(char *);
 
 typedef struct gram Gram;
-void initHashTable(Gram **table);
-Gram *lookupWord(Gram **table, char *word);
 
 struct gram {
   char word[MAX_WORD];
@@ -13,8 +11,7 @@ struct gram {
   struct gram *next;
 };
 
-
+void initHashTable(Gram **table);
+Gram *lookupWord(Gram **table, char *word);
 int addWord(Gram **table, char *word);
-
-
-
+Gram *findMax(Gram **table);

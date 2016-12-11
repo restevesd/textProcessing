@@ -9,3 +9,9 @@ test_compile:
 test_run:
 	testHashString
 	testGram
+
+compile:	
+	$(CC) hashString.c gram.c findMax.c -o findMax -g -Wall		
+
+run:
+	findMax
