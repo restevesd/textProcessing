@@ -15,3 +15,8 @@ compile:
 
 run:
 	findMax
+
+get_data:
+	wget https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip -P data
+	unzip data/Coursera-SwiftKey.zip -d data
+	rm data/Coursera-SwiftKey.zip
