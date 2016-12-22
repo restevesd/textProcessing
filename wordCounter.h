@@ -1,12 +1,12 @@
-#define HASH_SIZE 100
-#define MAX_WORD 100
+#define HASH_SIZE 200013
+#define MAX_WORD 2000
 
 unsigned int hashString(char *);
 
 typedef struct gram Gram;
 
 struct gram {
-  char word[MAX_WORD];
+  char *word;
   int count;
   struct gram *next;
 };

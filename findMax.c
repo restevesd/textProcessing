@@ -5,7 +5,7 @@
 
 
 int main() {
-  FILE *file = fopen("data/test.txt", "r");
+  FILE *file = fopen("data/en_US.test.clean.txt", "r");
   char word[MAX_WORD];
   Gram *table[HASH_SIZE];
   initHashTable(table);
@@ -16,6 +16,7 @@ int main() {
   }
   Gram *entry = lookupWord(table, word);
   (entry->count)--;
+
   Gram *gramMax = findMax(table);
-  printf("%s\n", gramMax->word);
+  printf("%s: %d\n", gramMax->word, gramMax->count);
 }

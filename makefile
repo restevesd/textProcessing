@@ -7,16 +7,22 @@ test_compile:
 	$(CC) hashString.c gram.c testGram.c -o testGram -g -Wall	
 
 test_run:
-	testHashString
-	testGram
+	./testHashString
+	./testGram
 
 compile:	
-	$(CC) hashString.c gram.c findMax.c -o findMax -g -Wall		
+	$(CC) -pg hashString.c gram.c findMax.c -o findMax -g -Wall 
 
 run:
-	findMax
+	./findMax
 
 get_data:
 	wget https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip -P data
 	unzip data/Coursera-SwiftKey.zip -d data
 	rm data/Coursera-SwiftKey.zip
+
+create_test_file:
+	head -n 200000  data/final/en_US/en_US.twitter.txt > data/final/en_US/en_US.test.txt
+
+clean_txt_files:
+	./cleanTextFile.sh < data/final/en_US/en_US.test.txt > data/en_US.test.clean.txt  

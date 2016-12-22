@@ -28,6 +28,7 @@ int addWord(Gram **table, char *word) {
     int idx = hashString(word);
     Gram *old_entry = table[idx];
     Gram *new_entry = malloc(sizeof(Gram));
+    new_entry->word = malloc(sizeof(char) * (strlen(word)+1));
     strcpy(new_entry->word, word);
     new_entry->count = 1;
     new_entry->next = old_entry;
