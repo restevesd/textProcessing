@@ -3,3 +3,5 @@ testGram
 data/final/*
 data/en_US.test.clean.txt
 gmon.out
+prof*
+findMax

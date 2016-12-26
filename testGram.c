@@ -38,6 +38,6 @@ int main() {
   } else {
     printf("not ok\n");
   }
-  Gram *gramMax = findMax(table);
+  Gram *gramMax = findMax(table)[0];
   printf("%s\n", gramMax->word);
 }

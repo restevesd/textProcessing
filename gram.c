@@ -39,16 +39,34 @@ int addWord(Gram **table, char *word) {
   return -1;
 }
 
-Gram *findMax(Gram **table) {
-  int countMax = 0;
+Gram **findMax(Gram **table) {
+  Gram **maxtable=malloc(sizeof(Gram*)*MAX_TABLE_SIZE);
+  for (int i = 0; i < MAX_TABLE_SIZE; i++) {
+    maxtable[i] = NULL;
+  }
   Gram *gramMax = NULL;
   for (int i = 0; i < HASH_SIZE; i++) {
     for (Gram *entry = table[i]; entry != NULL; entry=(entry->next)) {
-      if (countMax < (entry->count)) {
+      if (gramMax == NULL || (gramMax->count) < (entry->count)) {
         gramMax = entry;
-        countMax = entry->count;
       }
+    
+  
+      int j = MAX_TABLE_SIZE-1;
+      while(j > 0 &&
+            (maxtable[j] == NULL ||
+             (maxtable[j]->count) < (entry->count))) {
+        maxtable[j] = maxtable[j-1];
+        j--;
+      }
+      if (j < MAX_TABLE_SIZE-1) {
+        if (maxtable[j] == NULL || (maxtable[j]->count) < (entry->count)) {
+          maxtable[j] = entry;
+        } else {
+          maxtable[j+1] = entry;
+        } 
+      } 
     }
   }
-  return gramMax;
+  return maxtable;
 }
