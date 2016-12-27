@@ -21,4 +21,6 @@ int main() {
          maxtable[i]->word,
          maxtable[i]->count);
   }
+  printf("----\n");
+  print_grams(gramBT, "-");
 }

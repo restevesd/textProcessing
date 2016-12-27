@@ -29,7 +29,8 @@ struct _gramBT {
 };
 
 GramBT *lookupWordBT(GramBT *gramBT, char *word);
-GramBT *addWordBT(GramBT *gramBT, char *word);
+GramBT *addWordBT(GramBT *gramBT, char *word, GramBT **gram_added);
 int findMaxBT(GramBT *gramBT, GramBT **maxtable);
+void print_grams(GramBT *gram, char *prefix);
 
 GramBT *readFileBT(char *file_name, GramBT *gramBT, int K);
