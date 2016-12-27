@@ -5,3 +5,6 @@ data/en_US.test.clean.txt
 gmon.out
 prof*
 findMax
+data/en_US.blogs.clean.txt
+data/en_US.news.clean.txt
+data/en_US.twitter.clean.txt

@@ -44,13 +44,9 @@ Gram **findMax(Gram **table) {
   for (int i = 0; i < MAX_TABLE_SIZE; i++) {
     maxtable[i] = NULL;
   }
-  Gram *gramMax = NULL;
+
   for (int i = 0; i < HASH_SIZE; i++) {
     for (Gram *entry = table[i]; entry != NULL; entry=(entry->next)) {
-      if (gramMax == NULL || (gramMax->count) < (entry->count)) {
-        gramMax = entry;
-      }
-    
   
       int j = MAX_TABLE_SIZE-1;
       while(j > 0 &&

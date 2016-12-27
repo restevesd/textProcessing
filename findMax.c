@@ -1,29 +1,24 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "wordCounter.h"
 
+//#define FILE_NAME "data/en_US.twitter.clean.txt"
+#define FILE_NAME "data/test.txt"
 
 int main() {
-  FILE *file = fopen("data/en_US.test.clean.txt", "r");
-  //FILE *file = fopen("data/test.txt", "r");
-  char word[MAX_WORD];
-  Gram *table[HASH_SIZE];
-  initHashTable(table);
-
-  while (!feof(file)) {
-    fscanf(file, "%s", word);
-    addWord(table, word);
+  GramBT *gramBT = NULL;
+  gramBT = readFileBT(FILE_NAME, gramBT, 1);
+  GramBT **maxtable=malloc(sizeof(GramBT*)*MAX_TABLE_SIZE);
+  for (int i = 0; i < MAX_TABLE_SIZE; i++) {
+    maxtable[i] = NULL;
   }
-  Gram *entry = lookupWord(table, word);
-  (entry->count)--;
-
-  Gram **maxtable = findMax(table);
+  findMaxBT(gramBT, maxtable);
+  //Gram **maxtable = findMax(table);
   for (int i = 0; i < MAX_TABLE_SIZE; i++) {
     printf("%s: %d\n",
          maxtable[i]->word,
          maxtable[i]->count);
   }
 }
-
-  
