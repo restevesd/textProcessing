@@ -9,3 +9,5 @@ data/en_US.blogs.clean.txt
 data/en_US.news.clean.txt
 data/en_US.twitter.clean.txt
 data/gram*.csv
+**/.Rhistory
+**/rsconnect

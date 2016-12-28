@@ -11,9 +11,9 @@
 
 int main() {
   GramBT *gramBT = NULL;
-  gramBT = readFileBT(FILE_NAME1, gramBT, 1000);
-  gramBT = readFileBT(FILE_NAME2, gramBT, 1000);
-  gramBT = readFileBT(FILE_NAME3, gramBT, 1000);
+  gramBT = readFileBT(FILE_NAME1, gramBT, 1);
+  gramBT = readFileBT(FILE_NAME2, gramBT, 1);
+  gramBT = readFileBT(FILE_NAME3, gramBT, 1);
   GramBT **maxtable=malloc(sizeof(GramBT*)*MAX_TABLE_SIZE);
   for (int i = 0; i < MAX_TABLE_SIZE; i++) {
     maxtable[i] = NULL;
@@ -26,15 +26,15 @@ int main() {
          maxtable[i]->count);
   }
   //printf("----\n");
-  FILE *f1 = fopen("data/gram1.csv", "w");
+  FILE *f1 = fopen("data/gram1final.csv", "w");
   fprint_1grams(f1, gramBT);
   fclose(f1);
 
-  FILE *f2 = fopen("data/gram2.csv", "w");
+  FILE *f2 = fopen("data/gram2final.csv", "w");
   fprint_12grams(f2, gramBT);
   fclose(f2);
 
-  FILE *f3 = fopen("data/gram3.csv", "w");
+  FILE *f3 = fopen("data/gram3final.csv", "w");
   fprint_123grams(f3, gramBT);
   fclose(f3);
 
