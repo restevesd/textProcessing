@@ -8,5 +8,4 @@ findMax
 data/en_US.blogs.clean.txt
 data/en_US.news.clean.txt
 data/en_US.twitter.clean.txt
-data/gram1.csv
-data/gram2.csv
+data/gram*.csv

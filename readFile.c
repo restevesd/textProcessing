@@ -13,6 +13,7 @@ GramBT *readFileBT(char *file_name, GramBT *gramBT, int K) {
 
   char word[MAX_WORD];
   char wordm1[MAX_WORD];
+  char wordm2[MAX_WORD];
   int lines_counter = 0;
   fp = fopen(file_name, "r");
   if (fp == NULL)
@@ -20,18 +21,26 @@ GramBT *readFileBT(char *file_name, GramBT *gramBT, int K) {
 
   GramBT **gram_added = malloc(sizeof(GramBT*));
   GramBT **gramm1_added = malloc(sizeof(GramBT*));
+  GramBT **gramm2_added = malloc(sizeof(GramBT*));
   
   while ((read = getline(&line, &len, fp)) != -1) {
     if ((rand() % K) ==  0) {
       if (lines_counter % 10000 == 0) printf("line: %d\n", lines_counter);
       wordm1[0] = '\0';
+      wordm2[0] = '\0';
       int j = 0;
       for (int i = 0; i < read; i++) {
         if (line[i] != 13) {
           if (line[i] == ' ' || line[i] == '\n')  {
             if (j != 0) {
               word[j] = '\0';
+              if (wordm2[0] != '\0') {
+                (*gramm1_added)->next =
+                    addWordBT((*gramm1_added)->next, word, gramm2_added);
+              } 
+            
               if (wordm1[0] != '\0') {
+                strcpy(wordm2, wordm1);
                 (*gram_added)->next =
                     addWordBT((*gram_added)->next, word, gramm1_added);
               } 

@@ -87,6 +87,29 @@ void fprint_12grams(FILE *f, GramBT *gram) {
   }
 }
 
+void fprint_3grams(FILE *f, char *word1, char *word2, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_3grams(f, word1, word2, gram->l);
+    fprintf(f, "%s,%s,%s,%d\n", word1, word2, gram->word, gram->count);
+    fprint_3grams(f, word1, word2, gram->r);
+  }
+}
+
+void fprint_23grams(FILE *f, char *word1, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_23grams(f, word1, gram->l);
+    fprint_3grams(f, word1, gram->word, gram->next);
+    fprint_23grams(f, word1, gram->r);
+  }
+}
+
+void fprint_123grams(FILE *f, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_123grams(f, gram->l);
+    fprint_23grams(f, gram->word, gram->next);
+    fprint_123grams(f, gram->r);
+  }
+}
 
 void print_grams(GramBT *gram, char *prefix) {
   if (gram != NULL) {
