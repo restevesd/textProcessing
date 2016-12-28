@@ -11,7 +11,7 @@ GramBT *lookupWordBT(GramBT *gramBT, char *word) {
   }
   short int c = strcmp(gramBT->word, word);
   if (c == 0) return gramBT;
-  if (c == -1) return lookupWordBT(gramBT->l, word);
+  if (c > 0) return lookupWordBT(gramBT->l, word);
   return lookupWordBT(gramBT->r, word);
 } 
 
@@ -33,7 +33,7 @@ GramBT *addWordBT(GramBT *gramBT, char *word, GramBT **gram_added) {
     *gram_added = gramBT;
     return gramBT;
   }
-  if (c == -1) {
+  if (c > 0) {
     (gramBT->l) = addWordBT(gramBT->l, word, gram_added);
   } else {
     (gramBT->r) = addWordBT(gramBT->r, word, gram_added);
@@ -63,13 +63,40 @@ int findMaxBT(GramBT *gramBT, GramBT **maxtable) {
   return 0;
 }
 
+void fprint_1grams(FILE *f, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_1grams(f, gram->l);
+    fprintf(f, "%s,%d\n", gram->word, gram->count);
+    fprint_1grams(f, gram->r);
+  }
+}
+
+void fprint_2grams(FILE *f, char *prefix, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_2grams(f, prefix, gram->l);
+    fprintf(f, "%s,%s,%d\n", prefix, gram->word, gram->count);
+    fprint_2grams(f, prefix, gram->r);
+  }
+}
+
+void fprint_12grams(FILE *f, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_12grams(f, gram->l);
+    fprint_2grams(f, gram->word, gram->next);
+    fprint_12grams(f, gram->r);
+  }
+}
+
+
 void print_grams(GramBT *gram, char *prefix) {
   if (gram != NULL) {
     print_grams(gram->l, prefix);
     printf("%s%s:%d\n", prefix, gram->word, gram->count);
-    /* if (gram->next != NULL) { */
-    /*   print_grams(gram->next, "---"); */
-    /* } */
+    if (gram->next != NULL) {
+      print_grams(gram->next, "---");
+    }
     print_grams(gram->r, prefix);
   }
 }
+
+

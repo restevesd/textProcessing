@@ -27,19 +27,21 @@ GramBT *readFileBT(char *file_name, GramBT *gramBT, int K) {
       wordm1[0] = '\0';
       int j = 0;
       for (int i = 0; i < read; i++) {
-        if (line[i] == 13) {
-        } else if (line[i] == ' ' || line[i] == '\n')  {
-          if (j != 0) {
-            word[j] = '\0';
-            if (wordm1[0] != '\0') {
-              (*gram_added)->next = addWordBT(*gram_added, word, gramm1_added);
-            } 
-            gramBT = addWordBT(gramBT, word, gram_added);
-            strcpy(wordm1, word);
-            j = 0;
+        if (line[i] != 13) {
+          if (line[i] == ' ' || line[i] == '\n')  {
+            if (j != 0) {
+              word[j] = '\0';
+              if (wordm1[0] != '\0') {
+                (*gram_added)->next =
+                    addWordBT((*gram_added)->next, word, gramm1_added);
+              } 
+              gramBT = addWordBT(gramBT, word, gram_added);
+              strcpy(wordm1, word);
+              j = 0;
+            }
+          } else {
+            word[j++] = line[i];
           }
-        } else {
-          word[j++] = line[i];
         }
       }
       lines_counter++;

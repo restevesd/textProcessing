@@ -4,11 +4,13 @@ test: test_compile test_run
 
 test_compile:
 	$(CC) hashString.c testHashString.c -o testHashString -g -Wall
-	$(CC) hashString.c gram.c testGram.c -o testGram -g -Wall	
+	$(CC) hashString.c gram.c testGram.c -o testGram -g -Wall
+	$(CC) gramBT.c testGramBT.c -o testGramBT -g -Wall		
 
 test_run:
 	./testHashString
 	./testGram
+	./testGramBT
 
 compile: 
 	$(CC) -pg hashString.c gram.c gramBT.c readFile.c findMax.c -o findMax -g -Wall 
