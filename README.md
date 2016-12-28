@@ -12,7 +12,7 @@ make get_data
 make clean_txt_files
 ```
 
-## Create grams:
+## Create 1,2 grams:
 
 ```
 make compile
