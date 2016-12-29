@@ -1,15 +1,17 @@
-source("splitText.R")
+source("simplePrediction.R")
+
+simplePredictorFun <- simplePredictor()
 
 shinyServer(function(input, output) {
 
-  textCleaned <- reactive({
-    cleanText(input$text)
+  prediction <- reactive({
+    simplePredictorFun(input$text)
   })
 
   
   output$text1 <- renderText({
-    if (textCleaned() !=  "") {
-      textCleaned()
+    if (input$text !=  "") {
+      prediction()
     } 
   })
 

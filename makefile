@@ -30,3 +30,6 @@ clean_txt_files:
 	./cleanTextFile.sh < data/final/en_US/en_US.twitter.txt > data/en_US.twitter.clean.txt
 	./cleanTextFile.sh < data/final/en_US/en_US.blogs.txt > data/en_US.blogs.clean.txt  	
 	./cleanTextFile.sh < data/final/en_US/en_US.news.txt > data/en_US.news.clean.txt  	
+
+prepare_data_simple_prediction:
+	cd R; Rscript prepareDataSimplePrediction.R 
