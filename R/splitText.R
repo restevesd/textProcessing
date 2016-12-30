@@ -9,7 +9,8 @@ cleanText <- function(text) {
 
 splitClean <- function(text) {
   text %>%
-    strsplit(" ")[[1]]
+    strsplit(" ")%>%
+    .[[1]]
 }
 
 splitText <- function(text) {
