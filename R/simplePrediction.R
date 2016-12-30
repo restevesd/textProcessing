@@ -96,7 +96,7 @@ simplePredictor <- function() {
   f3 <- simplePredictor3(f2)
   
   sp <- function(text) {
-    splitted <- splitText(text)[[1]]
+    splitted <- splitText(text)
     n <- length(splitted)
     if (n == 0) {
       f1(splitted)

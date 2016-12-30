@@ -1,10 +1,13 @@
 library(data.table)
 library(magrittr)
 
+source("splitText.R")
+
 EMPTYLINES2STOP <- 10
 PROB <- 0.00001
 
 conRead <- file("../data/en_US.twitter.clean.txt", "r")
+conWrite <- file("testData.txt", "w")
 ##conRead <- file("../data/test.txt", "r")
 emptylines <- 0
 while ( TRUE ) {
@@ -14,7 +17,10 @@ while ( TRUE ) {
   } else {
     emptylines <- 0
     if (rbinom(1, 1, PROB) == 1) {
-      print(line)
+      line_split <- splitClean(line)
+      N <- length(line_split)
+      print(paste(line_split, collapse(", ")))
+      writeLines(line, conWrite)
     }
   }
   if (emptylines == EMPTYLINES2STOP) {
@@ -22,10 +28,4 @@ while ( TRUE ) {
   }
 }
 close(conRead)
-conWrite <- file("testData.csv", "w")
-
-rbinom(n, size, prob)
-
-
-
 close(conWrite)
