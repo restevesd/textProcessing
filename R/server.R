@@ -8,7 +8,6 @@ shinyServer(function(input, output) {
     simplePredictorFun(input$text)
   })
 
-  
   output$text1 <- renderText({
     if (input$text !=  "") {
       prediction()

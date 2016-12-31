@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Data Science Capstone Project"
 output: ioslides_presentation
 ---
 
@@ -7,27 +7,26 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Project
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The objective of this project is a web application that predicts a word that a preson is going to write.It works as very simple, in the text input a user enter few words and the press the button "__Predict next word__". Then, on the right hand panel, one can see the next word.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
+### Data
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+Train data contains about 550MB of text that are tweets, news, blogs. It is XXXX lines that we process by removing everything that is not a letter, then we lower case them.
 
-## Slide with R Output
+### Processing data
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+From each line of data we create 1, 2 and grams. Since that dataset is huge it was hard to process it using R. We have decied to write a C code that creates Binary Search Trees of grams. Then we create csv files with created grams and frequecies of each gram.
 
-## Slide with Plot
+## Simples model
 
-```{r pressure}
-plot(pressure)
-```
+The most popular 1-gram is the word "the". So if there is no other data we provide it as the default next word. 
+The 2-grams we treat as follows. We group then by the first word and then we find the most popular second word. This word is the predicted word if the prevous word is provided. Similary we treat 3-grams. We group them by the first and second word and we find the third most popular word. 
 
+Since the free shiny server has restictions of size of files we consider only grams that have appeared at least twice.
+
+## Accuracy
+
+The accuracy of restriced model is 16%.

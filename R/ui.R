@@ -5,15 +5,16 @@ fluidPage(
   
   fluidRow(
     column(
-      3, 
+      5, 
       textInput(
         "text",
         label = h3("Text input")
       ),
-      submitButton("Submit")
+      submitButton("Predict next word")
     ),
     column(
-      3, 
+      7,
+      h2("Prediction:"),
       textOutput("text1")
     )
   )
