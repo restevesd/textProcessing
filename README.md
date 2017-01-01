@@ -20,3 +20,17 @@ make run
 ```
 
 Grams are created as `data/gram*.csv`
+
+## Prepare data for prediction
+
+```
+make prepare_data_simple_prediction:
+```
+
+## Calulace accuracy
+
+```
+make generate_tests
+make accuracy
+```
+

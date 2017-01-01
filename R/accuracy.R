@@ -8,8 +8,14 @@ con <- file("testData.txt", "r")
 
 correct <- 0
 total <- 0
+linecounts <- 0
 while ( TRUE ) {
   line = readLines(con, n = 1)
+  linecounts <- linecounts + 1
+  if (linecounts %% 100 == 0) {
+    cat(sprintf("%.0f lines read\n", linecounts))
+  }
+
   if ( length(line) ==  0 || nchar(line) == 0 ) {
     break
   }

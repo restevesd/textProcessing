@@ -1,32 +1,47 @@
 ---
 title: "Data Science Capstone Project"
-output: ioslides_presentation
+output: 
+  slidy_presentation
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Project
+## Web Application
 
-The objective of this project is a web application that predicts a word that a preson is going to write.It works as very simple, in the text input a user enter few words and the press the button "__Predict next word__". Then, on the right hand panel, one can see the next word.
+We have created a web application that predicts a word that a preson is going to write. It works as very simple:
 
+- in the text input a user enters text, next predicted word appears on the left hand side,
+- one can press the button "__Add prediction to text__" that adds the predicted next word to the text.
 
-### Data
+## Data
 
-Train data contains about 550MB of text that are tweets, news, blogs. It is XXXX lines that we process by removing everything that is not a letter, then we lower case them.
+Train data contains about 550MB of text that are tweets, news, blogs. It is 4,000,000 lines that we process by:
 
-### Processing data
+- removing everything that is not a letter,
+- replace upper case letters for lower case,
+- from each line of data we create 1, 2, 3, 4 grams (it was hard to procces data using R so we have written a C code that creates Binary Search Trees that contains grams),
+- we create csv files with created grams and frequecies of each gram.
 
-From each line of data we create 1, 2 and grams. Since that dataset is huge it was hard to process it using R. We have decied to write a C code that creates Binary Search Trees of grams. Then we create csv files with created grams and frequecies of each gram.
+## Predictive Algorithm: Simple model 
 
-## Simples model
+- The most popular word is "the". So if there is no other data we provide it as the default next word. 
+- The 2-grams we treat as follows. We group then by the first word and then we find the most popular second word. This word is the predicted word if the prevous word is provided. 
+- Similary we treat 3-grams and 4-grams. We group them by firsts words and we find the next most popular word. 
 
-The most popular 1-gram is the word "the". So if there is no other data we provide it as the default next word. 
-The 2-grams we treat as follows. We group then by the first word and then we find the most popular second word. This word is the predicted word if the prevous word is provided. Similary we treat 3-grams. We group them by the first and second word and we find the third most popular word. 
+Since the free shiny server has restictions of size of files we consider only grams that had appeared at least twice in the train data.
 
-Since the free shiny server has restictions of size of files we consider only grams that have appeared at least twice.
+### Accuracy
 
-## Accuracy
+The accuracy of the model is 20%. We did not remove _stop words_ since that leads to better accuracy.
 
-The accuracy of restriced model is 16%.
+## Links
+
+### Git repo:
+
+https://github.com/sbartek/textProcessing
+
+### Aplication:
+
+https://sbartek.shinyapps.io/predictnextword

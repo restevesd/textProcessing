@@ -1,19 +1,23 @@
 shinyUI(bootstrapPage(
-  
+
+    
 fluidPage(
+  tags$head(tags$script(src = "message-handler.js")),
   titlePanel("Text Prediction"),
   
   fluidRow(
     column(
-      5, 
-      textInput(
-        "text",
-        label = h3("Text input")
+      9, 
+      textAreaInput(
+        "textEnter",
+        label = h3("Text input"),
+        width="300%",
+        rows=10
       ),
-      submitButton("Predict next word")
+      actionButton("addPredict", "Add prediction to text")
     ),
     column(
-      7,
+      3,
       h2("Prediction:"),
       textOutput("text1")
     )

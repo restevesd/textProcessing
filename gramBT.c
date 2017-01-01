@@ -4,7 +4,6 @@
 
 #include "wordCounter.h"
 
-
 GramBT *lookupWordBT(GramBT *gramBT, char *word) {
   if (gramBT == NULL) {
     return NULL;
@@ -108,6 +107,38 @@ void fprint_123grams(FILE *f, GramBT *gram) {
     fprint_123grams(f, gram->l);
     fprint_23grams(f, gram->word, gram->next);
     fprint_123grams(f, gram->r);
+  }
+}
+
+void fprint_4grams(FILE *f, char *word1, char *word2, char *word3, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_4grams(f, word1, word2, word3, gram->l);
+    fprintf(f, "%s,%s,%s,%s,%d\n", word1, word2, word3, gram->word, gram->count);
+    fprint_4grams(f, word1, word2, word3, gram->r);
+  }
+}
+
+void fprint_34grams(FILE *f, char *word1, char *word2, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_34grams(f, word1, word2, gram->l);
+    fprint_4grams(f, word1, word2, gram->word, gram->next);
+    fprint_34grams(f, word1, word2, gram->r);
+  }
+}
+
+void fprint_234grams(FILE *f, char *word1, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_234grams(f, word1, gram->l);
+    fprint_34grams(f, word1, gram->word, gram->next);
+    fprint_234grams(f, word1, gram->r);
+  }
+}
+
+void fprint_1234grams(FILE *f, GramBT *gram) {
+  if (gram != NULL) {
+    fprint_1234grams(f, gram->l);
+    fprint_234grams(f, gram->word, gram->next);
+    fprint_1234grams(f, gram->r);
   }
 }
 

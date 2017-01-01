@@ -38,4 +38,8 @@ int main() {
   fprint_123grams(f3, gramBT);
   fclose(f3);
 
+  FILE *f4 = fopen("data/gram4final.csv", "w");
+  fprint_1234grams(f4, gramBT);
+  fclose(f4);
+
 }

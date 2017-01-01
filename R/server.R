@@ -2,16 +2,25 @@ source("simplePrediction.R")
 
 simplePredictorFun <- simplePredictor()
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   prediction <- reactive({
-    simplePredictorFun(input$text)
+    pred <- simplePredictorFun(input$textEnter)
+    pred
   })
 
   output$text1 <- renderText({
-    if (input$text !=  "") {
-      prediction()
-    } 
+    if (input$textEnter != "") {
+      pred <- prediction()
+      pred
+    }
   })
-
+  
+  observeEvent(input$addPredict, {
+    updateTextAreaInput(
+      session, 
+      "textEnter",
+      value = paste(input$textEnter, prediction())
+    )
+  })
 })

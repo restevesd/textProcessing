@@ -37,6 +37,7 @@ void print_grams(GramBT *gram, char *prefix);
 void fprint_1grams(FILE *f, GramBT *gram);
 void fprint_12grams(FILE *f, GramBT *gram);
 void fprint_123grams(FILE *f, GramBT *gram);
+void fprint_1234grams(FILE *f, GramBT *gram);
 
 GramBT *readFileBT(char *file_name, GramBT *gramBT, int K);
 

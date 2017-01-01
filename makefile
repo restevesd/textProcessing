@@ -32,4 +32,10 @@ clean_txt_files:
 	./cleanTextFile.sh < data/final/en_US/en_US.news.txt > data/en_US.news.clean.txt  	
 
 prepare_data_simple_prediction:
-	cd R; Rscript prepareDataSimplePrediction.R 
+	cd R; Rscript prepareDataSimplePrediction.R
+
+generate_tests:
+	cd R; Rscript generateTest.R	
+
+accuracy:
+	cd R; Rscript accuracy.R
