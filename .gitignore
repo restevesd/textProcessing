@@ -13,4 +13,5 @@ R/testData.txt
 **/.Rhistory
 **/rsconnect
 **/.RData
+R/*.Rmd.md
 
